@@ -58,7 +58,7 @@ TechStore/
 
 | Layer              | Technology                  |
 | ------------------ | --------------------------- |
-| **API**            | ASP.NET Core 8              |
+| **API**            | ASP.NET Core 9              |
 | **Application**    | MediatR, FluentValidation   |
 | **Infrastructure** | Entity Framework Core       |
 | **Domain**         | Clean Architecture / DDD    |
@@ -82,10 +82,30 @@ cd TechStore
 dotnet restore
 ```
 
-### Run the API
+### Configure Connection String
+
+Update your `appsettings.json` in `TechStore.WebAPI` with your own database connection string:
+
+```json
+"ConnectionStrings": {
+  "DefaultConnection": "Server=YOUR_SERVER;Database=TechStoreDb;User Id=YOUR_USER;Password=YOUR_PASSWORD;TrustServerCertificate=True;"
+}
+```
+
+### Apply Migrations and Update Database
 
 ```bash
 cd TechStore.WebAPI
+# Create migration
+dotnet ef migrations add InitialCreate --project ../TechStore.Infrastructure --startup-project .
+
+# Apply migration to database
+dotnet ef database update --project ../TechStore.Infrastructure --startup-project .
+```
+
+### Run the API
+
+```bash
 dotnet run
 ```
 
