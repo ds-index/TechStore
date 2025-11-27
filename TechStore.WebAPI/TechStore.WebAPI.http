@@ -1,0 +1,12 @@
+@TechStore.WebAPI_HostAddress = https://localhost:7076
+
+
+POST {{TechStore.WebAPI_HostAddress}}/api/auth/Login
+Content-Type: application/json
+
+{
+  "Email": "Arman@test.com",
+  "Password": "Arman@1234"
+}
+
+###
